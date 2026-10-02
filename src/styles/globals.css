@@ -1,14 +1,18 @@
 @import "./variables.css";
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  max-width: 100vw;
   background-color: var(--bg-space);
   color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -19,16 +23,46 @@ body {
   background: transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Inter, sans-serif;
   overflow-x: hidden;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button,
 input,
-select {
+select,
+textarea {
   font-family: inherit;
+}
+
+/* Ensure mobile form fields do not cause automatic zoom on iOS */
+@media screen and (max-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
 }
 
 #root {
   min-height: 100svh;
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

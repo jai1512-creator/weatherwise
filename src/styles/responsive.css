@@ -1,150 +1,618 @@
 /* ==========================================================================
-   Responsive Adaptations
+   WeatherWise Responsive & Mobile Refinement Stylesheet
+   Optimized for 320px, 360px, 375px, 390px, 414px, 430px, and tablet widths
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   1. TABLET & MEDIUM SCREENS (<= 768px)
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
+  /* Layout Shell & Core Container */
   .app-content,
   .navbar,
   .footer {
     width: min(100% - 1.5rem, 1120px);
   }
 
+  .app-content {
+    padding: 0.25rem 0 4rem;
+  }
+
+  .atmospheric-divider {
+    height: 32px;
+    margin: 1.25rem 0;
+  }
+
+  /* Structural Cards */
+  .weather-hero,
+  .forecast-section,
+  .should-i-go,
+  .earth-scene {
+    margin-top: 1.5rem;
+    padding: 1.35rem 1.15rem;
+  }
+
+  /* Navbar */
   .navbar {
-    padding: 1rem 0;
+    padding: 1rem 0 0.75rem;
   }
 
   .navbar__nav {
-    gap: 0.65rem;
+    gap: 0.5rem;
   }
 
   .navbar__link {
     font-size: 0.85rem;
-    padding: 0.35rem 0.55rem;
+    padding: 0.4rem 0.65rem;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Location Search */
+  .location-search {
+    margin-bottom: 1.25rem;
   }
 
   .location-search__form {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0.65rem;
+    padding: 0.55rem;
   }
 
-  .location-search__form > * {
-    width: 100%;
+  .search-results {
+    max-height: min(300px, 48vh);
+    -webkit-overflow-scrolling: touch;
+    z-index: 50;
   }
 
-  .weather-hero {
-    padding: 1.5rem;
+  .search-result-item {
+    padding: 0.85rem 1rem;
+    min-height: 48px;
+  }
+
+  /* Weather Hero & Telemetry Body */
+  .weather-hero__header {
+    margin-bottom: 1.25rem;
+  }
+
+  .weather-hero__title {
+    font-size: clamp(1.85rem, 5.5vw, 2.85rem);
+    line-height: 1.15;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .weather-hero__subtitle {
+    font-size: 0.95rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .weather-hero__body {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
+    align-items: stretch;
+    gap: 1.25rem;
   }
 
-  .weather-stats {
+  .current-weather {
     width: 100%;
-    box-sizing: border-box;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.9rem 1.25rem;
+    gap: 1.25rem;
   }
 
   .location-time {
     width: 100%;
     box-sizing: border-box;
-    padding: 0.85rem 1.25rem;
+    padding: 0.9rem 1.15rem;
   }
 
+  .location-time__zone {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .weather-stats {
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    gap: 0.5rem;
+    padding: 0.9rem 0.75rem;
+  }
+
+  .weather-stats dt {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+
+  .weather-stats dd {
+    font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+    margin: 0.25rem 0 0;
+  }
+
+  /* Forecast Section */
   .forecast-controls {
-    display: none;
+    display: none; /* Touch users swipe smoothly on the hourly rail */
+  }
+
+  .hourly-scroll {
+    gap: 0.75rem;
+    padding: 0.25rem 0.15rem 0.75rem;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
   }
 
   .hourly-card {
-    flex: 0 0 90px;
+    flex: 0 0 92px;
     padding: 0.95rem 0.5rem;
+    touch-action: pan-y;
   }
 
   .daily-item {
     grid-template-columns: 120px 80px 1fr;
     gap: 0.5rem;
-    padding: 0.8rem 1rem;
+    padding: 0.85rem 1rem;
   }
 
+  /* Should I Go Activity Planning */
   .plan-form {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    padding: 1.15rem;
   }
 
-  .plan-form button {
-    width: 100%;
+  .plan-form__field:first-child,
+  .plan-form__field:nth-child(4),
+  .plan-form__submit {
+    grid-column: 1 / -1;
   }
-}
 
-@media (max-width: 480px) {
-  .navbar__brand-text {
+  .plan-form__submit {
+    height: 48px;
     font-size: 0.95rem;
   }
 
-  .navbar__nav {
-    gap: 0.35rem;
-  }
-
-  .navbar__link {
-    font-size: 0.78rem;
-    padding: 0.25rem 0.4rem;
-  }
-
-  .weather-hero__title {
-    font-size: 1.85rem;
-  }
-
-  .current-weather {
+  .recommendation {
+    padding: 1.25rem;
     gap: 1.15rem;
   }
 
-  .current-weather__icon-wrapper {
-    width: 58px;
-    height: 58px;
+  .recommendation__grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.75rem;
   }
 
-  .current-weather__temp {
-    font-size: 3.2rem;
+  /* 3D Globe */
+  .earth-scene__canvas {
+    height: clamp(260px, 48vw, 380px);
+    touch-action: pan-y;
   }
 
-  .hourly-card {
-    flex: 0 0 82px;
+  .earth-scene__coords {
+    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
+  /* Footer */
+  .footer {
+    margin: 2.25rem auto 0;
+    padding: 1.75rem 0;
+    font-size: 0.82rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. MOBILE PHABLETS & LARGE PHONES (<= 640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* Navbar: Clean vertical stack preventing any logo/link overlap */
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    padding: 0.85rem 0 0.4rem;
+  }
+
+  .navbar__brand {
+    justify-content: center;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+  }
+
+  .navbar__nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    width: 100%;
+  }
+
+  .navbar__link {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.65rem;
+    min-height: 38px;
+    border-radius: var(--radius-full);
+    touch-action: manipulation;
+  }
+
+  /* Search: 2-column actions row (Search + Use my location) */
+  .location-search__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    border-radius: var(--radius-md);
+  }
+
+  .location-search__input-wrapper {
+    grid-column: 1 / -1;
+  }
+
+  .location-search__input {
+    min-height: 46px;
+    padding: 0.7rem 2.25rem 0.7rem 0.85rem;
+  }
+
+  .location-search__form .button--primary {
+    grid-column: 1;
+    min-height: 44px;
+    padding: 0.65rem 0.5rem;
+  }
+
+  .location-search__form .button--secondary {
+    grid-column: 2;
+    min-height: 44px;
+    padding: 0.65rem 0.5rem;
+    font-size: 0.82rem;
+  }
+
+  /* 7-Day Forecast: Flexbox alignment that never squishes or wraps awkwardly */
   .daily-item {
-    grid-template-columns: 90px 50px 1fr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0.85rem;
     gap: 0.4rem;
-    padding: 0.7rem 0.85rem;
   }
 
-  .daily-item__bar-track {
-    display: none;
+  .daily-item__day-col {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .daily-item__day {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    font-weight: 700;
   }
 
   .daily-item__condition {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+  }
+
+  .daily-item__visual-col {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0 0.35rem;
+  }
+
+  .daily-item__precip {
     font-size: 0.72rem;
+  }
+
+  .daily-item__temp-col {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.45rem;
+  }
+
+  .daily-item__bar-track {
+    display: none; /* Hide gauge bar on phones to preserve clean min/max typography */
   }
 
   .daily-item__temp-min,
   .daily-item__temp-max {
     font-size: 0.95rem;
     min-width: 28px;
+    text-align: right;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. STANDARD SMARTPHONES (<= 480px: 430px, 414px, 390px, 375px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  /* Container Padding Optimization */
+  .weather-hero,
+  .forecast-section,
+  .should-i-go,
+  .earth-scene {
+    margin-top: 1.15rem;
+    padding: 1.15rem 0.95rem;
+    border-radius: var(--radius-md);
+  }
+
+  /* Weather Hero Typography */
+  .weather-hero__title {
+    font-size: clamp(1.65rem, 6.5vw, 2.15rem);
+    letter-spacing: -0.01em;
+  }
+
+  .weather-hero__subtitle {
+    font-size: 0.88rem;
+    margin-top: 0.25rem;
+  }
+
+  .current-weather {
+    gap: 1rem;
+  }
+
+  .current-weather__icon-wrapper {
+    width: clamp(52px, 14vw, 62px);
+    height: clamp(52px, 14vw, 62px);
+  }
+
+  .current-weather__temp {
+    font-size: clamp(2.75rem, 11vw, 3.6rem);
+    line-height: 0.95;
+  }
+
+  .current-weather__condition {
+    font-size: 1.05rem;
+  }
+
+  /* Local Time & Timezone */
+  .location-time {
+    padding: 0.8rem 0.95rem;
+  }
+
+  .location-time__clock {
+    font-size: clamp(1.35rem, 5vw, 1.7rem);
+  }
+
+  .location-time__zone {
+    font-size: 0.78rem;
+  }
+
+  /* Hourly Forecast Card Sizing */
+  .hourly-card {
+    flex: 0 0 86px;
+    padding: 0.85rem 0.4rem;
+  }
+
+  .hourly-card__temp {
+    font-size: 1.15rem;
+  }
+
+  .hourly-card__condition {
+    font-size: 0.7rem;
+    max-width: 72px;
+  }
+
+  /* Should I Go Form: Full Stack on Mobile */
+  .plan-form {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 0.95rem;
+  }
+
+  .plan-form__field {
+    grid-column: 1 / -1;
+  }
+
+  .plan-form__label {
+    font-size: 0.82rem;
+  }
+
+  .plan-form__input,
+  .plan-form__select {
+    min-height: 46px;
+    padding: 0.65rem 0.85rem;
+  }
+
+  /* Recommendation Card & Grid */
+  .recommendation {
+    padding: 1.15rem 0.95rem;
+    gap: 1rem;
+  }
+
+  .recommendation__badge {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .recommendation__summary {
+    font-size: 1.08rem;
+    line-height: 1.4;
+  }
+
+  .recommendation-factor {
+    font-size: 0.88rem;
+    gap: 0.5rem;
+  }
+
+  .recommendation__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.55rem;
+  }
+
+  .recommendation__metric-card {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .metric-value {
+    font-size: 1rem;
+  }
+
+  .metric-sub {
+    font-size: 0.74rem;
+  }
+
+  /* 3D Globe Visual */
+  .earth-scene__canvas {
+    height: clamp(230px, 55vw, 320px);
+  }
+
+  .earth-scene__caption {
+    font-size: 0.8rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. ULTRA-COMPACT SMARTPHONES (<= 360px & 320px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 360px) {
+  /* Maximize screen estate: 8px side margins */
+  .app-content,
+  .navbar,
+  .footer {
+    width: min(100% - 1rem, 1120px);
+  }
+
+  .weather-hero,
+  .forecast-section,
+  .should-i-go,
+  .earth-scene {
+    margin-top: 1rem;
+    padding: 0.95rem 0.75rem;
+  }
+
+  /* Navbar compact branding */
+  .navbar__brand-text {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .navbar__link {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.5rem;
+    min-height: 36px;
+  }
+
+  /* Search form: 1-column stack */
+  .location-search__form {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    padding: 0.45rem;
+  }
+
+  .location-search__form .button--primary,
+  .location-search__form .button--secondary {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  /* Hero adjustments */
+  .weather-hero__title {
+    font-size: 1.55rem;
+  }
+
+  .current-weather {
+    gap: 0.75rem;
+  }
+
+  .current-weather__icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .current-weather__temp {
+    font-size: 2.6rem;
   }
 
   .weather-stats {
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0.45rem;
+    gap: 0.25rem;
+  }
+
+  .weather-stats dt {
+    font-size: 0.65rem;
   }
 
   .weather-stats dd {
-    font-size: 1.15rem;
+    font-size: 1rem;
+  }
+
+  /* Hourly Cards */
+  .hourly-card {
+    flex: 0 0 78px;
+    padding: 0.75rem 0.35rem;
+  }
+
+  .hourly-card__temp {
+    font-size: 1.05rem;
+  }
+
+  .hourly-card__condition {
+    max-width: 66px;
+    font-size: 0.68rem;
+  }
+
+  /* Daily Forecast Item */
+  .daily-item {
+    padding: 0.65rem 0.65rem;
+    gap: 0.25rem;
+  }
+
+  .daily-item__day {
+    font-size: 0.85rem;
+  }
+
+  .daily-item__condition {
+    max-width: 95px;
+    font-size: 0.7rem;
+  }
+
+  .daily-item__temp-min,
+  .daily-item__temp-max {
+    font-size: 0.88rem;
+    min-width: 24px;
+  }
+
+  /* Recommendation grid becomes single column on 320px */
+  .recommendation__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .earth-scene__canvas {
+    height: 220px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. TOUCH & GESTURE OPTIMIZATIONS
+   -------------------------------------------------------------------------- */
+@media (hover: none) or (pointer: coarse) {
+  /* Prevent hover transforms from sticking on touched elements */
+  .button:hover,
+  .hourly-card:hover,
+  .daily-item:hover,
+  .search-result-item:hover {
+    transform: none;
+  }
+
+  /* Provide instantaneous tactile active response */
+  .button:active,
+  .hourly-card:active,
+  .daily-item:active,
+  .search-result-item:active {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+
+  /* Disable cursor parallax simulation on touch hardware */
+  .cursor-parallax {
+    transform: none !important;
+  }
+
+  /* Interactive canvas must allow seamless vertical page scrolling */
+  .earth-scene__canvas canvas {
+    touch-action: pan-y !important;
   }
 }

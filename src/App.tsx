@@ -12,6 +12,7 @@ import { useGeolocation } from "./hooks/useGeolocation";
 import { useWeather } from "./hooks/useWeather";
 import type { Location } from "./types/location";
 import "./App.css";
+import "./styles/responsive.css";
 
 function App() {
   const [location, setLocation] = useState<Location | null>(null);
