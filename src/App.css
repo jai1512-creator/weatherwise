@@ -1,0 +1,1132 @@
+/* ==========================================================================
+   WeatherWise Cinematic App Shell & Layout
+   ========================================================================== */
+
+.app-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+.app-content {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 0.5rem 0 5rem;
+}
+
+.section-anchor {
+  scroll-margin-top: 5rem;
+}
+
+/* Cinematic Atmospheric Section Divider */
+.atmospheric-divider {
+  height: 48px;
+  margin: 2rem 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(20, 184, 166, 0.08) 0%,
+    rgba(15, 23, 42, 0.2) 40%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+.navbar {
+  position: relative;
+  z-index: 10;
+  width: min(1120px, calc(100% - 2.5rem));
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text-white);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: opacity 0.2s ease;
+}
+
+.navbar__brand:hover {
+  opacity: 0.9;
+}
+
+.navbar__brand-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--teal-accent);
+  box-shadow: 0 0 10px var(--teal-light), 0 0 20px var(--teal-accent);
+  display: inline-block;
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.navbar__brand-text {
+  background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.navbar__link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.navbar__link:hover {
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.navbar__link--cta {
+  color: var(--teal-light);
+  border: 1px solid var(--border-subtle);
+  background: rgba(20, 184, 166, 0.08);
+}
+
+.navbar__link--cta:hover {
+  color: #ffffff;
+  background: var(--teal-dim);
+  border-color: var(--teal-border);
+}
+
+/* ==========================================================================
+   Buttons & Generic Form Inputs
+   ========================================================================== */
+.button {
+  font: inherit;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button--primary {
+  background: var(--teal-accent);
+  color: #031317;
+  font-weight: 700;
+  box-shadow: 0 4px 16px var(--teal-glow);
+}
+
+.button--primary:hover:not(:disabled) {
+  background: var(--teal-light);
+  box-shadow: 0 0 24px rgba(45, 212, 191, 0.45);
+  transform: translateY(-1px);
+}
+
+.button--secondary {
+  background: rgba(15, 23, 42, 0.65);
+  color: var(--text-soft);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: rgba(24, 36, 62, 0.85);
+  border-color: var(--border-hover);
+  color: var(--text-white);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+input,
+select {
+  font: inherit;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-subtle);
+  background: rgba(11, 19, 36, 0.75);
+  color: var(--text-white);
+  backdrop-filter: blur(12px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder {
+  color: var(--text-dim);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--teal-accent);
+  box-shadow: 0 0 0 3px var(--teal-dim);
+}
+
+/* ==========================================================================
+   Floating Location Search
+   ========================================================================== */
+.location-search {
+  position: relative;
+  z-index: 25;
+  margin-bottom: 1.5rem;
+}
+
+.location-search__form {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.45rem;
+  background: rgba(11, 19, 36, 0.65);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-card);
+}
+
+.location-search__input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.location-search__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  background: transparent;
+  border: 0;
+  color: var(--text-white);
+  font-size: 0.98rem;
+}
+
+.location-search__input:focus {
+  box-shadow: none;
+}
+
+.location-search__clear {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem 0.45rem;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+.location-search__clear:hover {
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Search Results Dropdown */
+.search-results {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  max-width: 44rem;
+  max-height: 340px;
+  overflow-y: auto;
+  background: rgba(11, 19, 36, 0.95);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(24px);
+  padding: 0.4rem;
+  margin: 0;
+  list-style: none;
+  z-index: 35;
+}
+
+.search-result-item {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.search-result-item:hover {
+  background: rgba(20, 184, 166, 0.12);
+}
+
+.search-result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.search-result-name {
+  color: var(--text-white);
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.search-result-sub {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.search-result-arrow {
+  color: var(--teal-light);
+  font-size: 1.1rem;
+  transition: transform 0.15s ease;
+}
+
+.search-result-item:hover .search-result-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Location Transition & Error
+   ========================================================================== */
+.location-transition {
+  margin: 0.5rem 0 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid var(--teal-border);
+  border-radius: var(--radius-sm);
+  color: var(--teal-light);
+  font-size: 0.88rem;
+  display: inline-block;
+  backdrop-filter: blur(8px);
+}
+
+.app-error {
+  margin: 0.5rem 0 1rem;
+  padding: 0.85rem 1.15rem;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: var(--radius-md);
+  color: #fca5a5;
+  font-size: 0.92rem;
+  backdrop-filter: blur(8px);
+}
+
+/* ==========================================================================
+   Atmospheric Cards & Structural Containers
+   ========================================================================== */
+.weather-hero,
+.forecast-section,
+.should-i-go,
+.earth-scene {
+  margin-top: 2rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--card-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: var(--card-backdrop);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--teal-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Current Weather Hero (Cinematic Focal Point over Atmosphere)
+   ========================================================================== */
+.weather-hero {
+  background: rgba(11, 19, 36, 0.52);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal-accent), transparent);
+  opacity: 0.4;
+}
+
+.weather-hero__header {
+  margin-bottom: 1.5rem;
+}
+
+.weather-hero__title {
+  margin: 0.35rem 0 0;
+  font-size: clamp(2rem, 5.5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.weather-hero__subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+.weather-hero__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2.25rem;
+}
+
+.weather-hero__placeholder {
+  color: var(--text-muted);
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+}
+
+.current-weather {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.current-weather__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  filter: drop-shadow(0 4px 14px rgba(20, 184, 166, 0.25));
+}
+
+.current-weather__temp {
+  display: block;
+  font-size: clamp(3.5rem, 8.5vw, 5.5rem);
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.current-weather__condition {
+  margin: 0.4rem 0 0;
+  color: var(--teal-light);
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.01em;
+}
+
+/* ==========================================================================
+   Location-Aware Local Time & Timezone Block
+   ========================================================================== */
+.location-time {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.45rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(14px);
+  min-width: 170px;
+}
+
+.location-time__eyebrow {
+  margin: 0;
+  color: var(--teal-light);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.location-time__clock {
+  display: block;
+  margin: 0.25rem 0 0.35rem;
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.location-time__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.location-time__zone {
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.location-time__offset {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.weather-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin: 0;
+  padding: 1.15rem 1.85rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(14px);
+}
+
+.weather-stats dt {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.weather-stats dd {
+  margin: 0.35rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+/* ==========================================================================
+   Forecast Hub & Controls
+   ========================================================================== */
+.forecast-hub {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.forecast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.35rem;
+}
+
+.forecast-header__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.forecast-header__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: -0.01em;
+}
+
+.forecast-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.forecast-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 23, 42, 0.65);
+  color: var(--text-soft);
+  font-size: 1.3rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.forecast-nav-btn:hover {
+  background: var(--teal-accent);
+  color: #031317;
+  border-color: var(--teal-accent);
+}
+
+/* ==========================================================================
+   Hourly Forecast Horizontal Rail
+   ========================================================================== */
+.hourly-forecast {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hourly-rail-container {
+  position: relative;
+  width: 100%;
+}
+
+.hourly-scroll {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.35rem 0.25rem 0.85rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hourly-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hourly-card {
+  flex: 0 0 102px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.1rem 0.65rem;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: default;
+}
+
+.hourly-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hourly-card--now {
+  background: rgba(20, 184, 166, 0.08);
+  border-color: var(--teal-accent);
+  box-shadow: 0 0 16px var(--teal-dim);
+}
+
+.hourly-card__time-wrapper {
+  margin-bottom: 0.5rem;
+}
+
+.hourly-card__time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hourly-card__time--active {
+  color: #031317;
+  background: var(--teal-accent);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.hourly-card__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  margin-bottom: 0.4rem;
+}
+
+.hourly-card__temp {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.hourly-card__condition {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90px;
+  margin-bottom: 0.45rem;
+}
+
+.hourly-card__precip-wrapper {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hourly-card__precip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--teal-light);
+}
+
+.hourly-card__precip--dry {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   Daily Forecast
+   ========================================================================== */
+.daily-forecast {
+  display: flex;
+  flex-direction: column;
+}
+
+.daily-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.daily-item {
+  display: grid;
+  grid-template-columns: 140px 110px 1fr;
+  align-items: center;
+  padding: 0.95rem 1.25rem;
+  background: rgba(15, 23, 42, 0.48);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.daily-item:hover {
+  transform: translateX(3px);
+  background: rgba(22, 34, 60, 0.65);
+  border-color: var(--border-hover);
+}
+
+.daily-item--today {
+  border-left: 3px solid var(--teal-accent);
+  background: rgba(20, 184, 166, 0.05);
+}
+
+.daily-item__day-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.daily-item__day {
+  font-weight: 700;
+  color: var(--text-white);
+  font-size: 1rem;
+}
+
+.daily-item__condition {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.daily-item__visual-col {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.daily-item__precip {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--teal-light);
+  white-space: nowrap;
+}
+
+.daily-item__temp-col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.daily-item__temp-min,
+.daily-item__temp-max {
+  font-weight: 700;
+  font-size: 1.05rem;
+  min-width: 34px;
+  text-align: right;
+}
+
+.daily-item__temp-min {
+  color: var(--text-muted);
+}
+
+.daily-item__temp-max {
+  color: var(--text-white);
+}
+
+.daily-item__bar-track {
+  position: relative;
+  flex: 1;
+  max-width: 140px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.daily-item__bar-range {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #38bdf8 0%, #14b8a6 50%, #f59e0b 100%);
+}
+
+/* ==========================================================================
+   Signature Should I Go? Feature
+   ========================================================================== */
+.should-i-go__header {
+  margin-bottom: 1.5rem;
+}
+
+.should-i-go__header h2 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: -0.01em;
+}
+
+.should-i-go__lead {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  max-width: 46rem;
+}
+
+.plan-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.15rem;
+  align-items: end;
+  background: rgba(15, 23, 42, 0.55);
+  padding: 1.35rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(14px);
+}
+
+.plan-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.plan-form__label {
+  color: var(--text-soft);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.plan-form__input,
+.plan-form__select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.plan-form__submit {
+  height: 44px;
+}
+
+.plan-error {
+  margin: 0.75rem 0 0;
+  color: #fca5a5;
+  font-size: 0.9rem;
+}
+
+.should-i-go__result {
+  margin-top: 1.5rem;
+}
+
+.plan-summary {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  background: rgba(20, 184, 166, 0.12);
+  border: 1px solid var(--teal-border);
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--teal-light);
+  margin-bottom: 1rem;
+}
+
+/* Recommendation Box */
+.recommendation {
+  padding: 1.65rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  backdrop-filter: blur(14px);
+}
+
+.recommendation--good {
+  background: rgba(20, 184, 166, 0.08);
+  border-color: rgba(45, 212, 191, 0.35);
+}
+
+.recommendation--caution {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.recommendation--avoid {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+.recommendation__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.recommendation__badge {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.recommendation__badge--good {
+  background: var(--teal-accent);
+  color: #031317;
+}
+
+.recommendation__badge--caution {
+  background: #f59e0b;
+  color: #170d00;
+}
+
+.recommendation__badge--avoid {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.recommendation__summary {
+  margin: 0;
+  color: var(--text-white);
+  font-size: 1.2rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.recommendation__section-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.recommendation-factors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.recommendation-factor {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+.factor-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.recommendation-factor--positive .factor-badge {
+  background: rgba(20, 184, 166, 0.2);
+  color: var(--teal-light);
+}
+
+.recommendation-factor--caution .factor-badge {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.recommendation-factor--critical .factor-badge {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Forecast Snapshot Grid */
+.recommendation__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.85rem;
+}
+
+.recommendation__metric-card {
+  padding: 0.85rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.metric-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.metric-sub {
+  font-size: 0.82rem;
+  font-weight: normal;
+  color: var(--text-muted);
+}
+
+.recommendation__confidence {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.confidence-icon {
+  color: var(--teal-light);
+  font-weight: bold;
+}
+
+.confidence-text {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+  position: relative;
+  z-index: 10;
+  width: min(1120px, calc(100% - 2.5rem));
+  margin: 3rem auto 0;
+  padding: 2.25rem 0;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.footer__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.footer__brand {
+  margin: 0;
+  color: var(--text-white);
+}
+
+.footer__attribution {
+  margin: 0;
+}
+
+.footer__link {
+  color: var(--teal-light);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__link:hover {
+  color: var(--text-white);
+}

@@ -1,0 +1,41 @@
+:root {
+  /* Cinematic Color Palette */
+  --bg-deep: #070c18;
+  --bg-space: #030712;
+  --bg-charcoal: #0b1325;
+  --bg-surface: rgba(13, 21, 38, 0.72);
+  --bg-surface-hover: rgba(20, 32, 58, 0.82);
+  --bg-surface-elevated: rgba(18, 29, 52, 0.88);
+
+  /* Typography Colors */
+  --text-white: #f8fafc;
+  --text-soft: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  /* Accent: Restrained Electric Teal */
+  --teal-accent: #14b8a6;
+  --teal-light: #2dd4bf;
+  --teal-glow: rgba(20, 184, 166, 0.28);
+  --teal-dim: rgba(20, 184, 166, 0.12);
+  --teal-hover: #0d9488;
+  --teal-border: rgba(45, 212, 191, 0.4);
+
+  /* Subtle Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --border-focus: #14b8a6;
+
+  /* Atmospheric Shadows & Glassmorphism */
+  --card-bg: rgba(11, 19, 36, 0.72);
+  --card-backdrop: blur(16px);
+  --shadow-card: 0 16px 40px -10px rgba(0, 0, 0, 0.55), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 24px rgba(20, 184, 166, 0.22);
+
+  /* Radii */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.85rem;
+  --radius-lg: 1.25rem;
+  --radius-full: 9999px;
+}

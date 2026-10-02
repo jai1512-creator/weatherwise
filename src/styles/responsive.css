@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .app-content,
+  .navbar,
+  .footer {
+    width: min(100% - 1.5rem, 1120px);
+  }
+
+  .navbar {
+    padding: 1rem 0;
+  }
+
+  .navbar__nav {
+    gap: 0.65rem;
+  }
+
+  .navbar__link {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.55rem;
+  }
+
+  .location-search__form {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.65rem;
+  }
+
+  .location-search__form > * {
+    width: 100%;
+  }
+
+  .weather-hero {
+    padding: 1.5rem;
+  }
+
+  .weather-hero__body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .weather-stats {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1.25rem;
+  }
+
+  .location-time {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.85rem 1.25rem;
+  }
+
+  .forecast-controls {
+    display: none;
+  }
+
+  .hourly-card {
+    flex: 0 0 90px;
+    padding: 0.95rem 0.5rem;
+  }
+
+  .daily-item {
+    grid-template-columns: 120px 80px 1fr;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .plan-form {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-form button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__brand-text {
+    font-size: 0.95rem;
+  }
+
+  .navbar__nav {
+    gap: 0.35rem;
+  }
+
+  .navbar__link {
+    font-size: 0.78rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .weather-hero__title {
+    font-size: 1.85rem;
+  }
+
+  .current-weather {
+    gap: 1.15rem;
+  }
+
+  .current-weather__icon-wrapper {
+    width: 58px;
+    height: 58px;
+  }
+
+  .current-weather__temp {
+    font-size: 3.2rem;
+  }
+
+  .hourly-card {
+    flex: 0 0 82px;
+  }
+
+  .daily-item {
+    grid-template-columns: 90px 50px 1fr;
+    gap: 0.4rem;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .daily-item__bar-track {
+    display: none;
+  }
+
+  .daily-item__day {
+    font-size: 0.9rem;
+  }
+
+  .daily-item__condition {
+    font-size: 0.72rem;
+  }
+
+  .daily-item__temp-min,
+  .daily-item__temp-max {
+    font-size: 0.95rem;
+    min-width: 28px;
+  }
+
+  .weather-stats {
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .weather-stats dd {
+    font-size: 1.15rem;
+  }
+}

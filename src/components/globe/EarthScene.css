@@ -1,0 +1,40 @@
+.earth-scene {
+  text-align: center;
+  position: relative;
+}
+
+.earth-scene__header {
+  margin-bottom: 1.15rem;
+  text-align: left;
+}
+
+.earth-scene__title {
+  margin: 0.25rem 0 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: -0.01em;
+}
+
+.earth-scene__canvas {
+  width: 100%;
+  height: clamp(280px, 42vw, 440px);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 35%, #080d1a 0%, #03060c 80%);
+  border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7);
+}
+
+.earth-scene__caption {
+  margin: 0.85rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.earth-scene__coords {
+  color: var(--teal-light);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
